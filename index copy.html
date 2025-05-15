@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="description"
+    content="CLONE: Holistic Closed-Loop Whole-Body Teleoperation for Long-Horizon Humanoid Control">
+  <meta name="keywords" content="Humanoid, Whole-body Control, Humanoid-Environment interaction">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>
+    CLONE: Holistic Closed-Loop Whole-Body Teleoperation for Long-Horizon Humanoid Control
+  </title>
+
+
+  <meta name="application-name" content="CLONE" />
+  <meta name="msapplication-TileColor" content="#FFFFFF" />
+
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QZ38WT2YPD"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('js', new Date());
+    gtag('config', 'G-QZ38WT2YPD');
+  </script>
+
+  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
+  <link rel="stylesheet" href="./static/css/bulma.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
+  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
+  <link rel="stylesheet" href="./static/css/index.css">
+
+  <script src="https://kit.fontawesome.com/19914a84eb.js" crossorigin="anonymous"></script>
+
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="./static/js/bulma-carousel.min.js"></script>
+  <script src="./static/js/bulma-slider.min.js"></script>
+  <script src="./static/js/index.js"></script>
+
+  <style>
+    .publication-authors,
+    .publication-authors .author-block,
+    .publication-authors a,
+    .publication-authors sup {
+      color: white !important;
+    }
+  </style>
+</head>
+
+<section class="hero is-link is-fullheight video" style="background-color: #9A0000; overflow: hidden; position:relative;">
+  <div class="hero-video" style="height: 100%; width: 177.77777778vh; min-width: 100%;min-height: 56.25vw;">
+    <video playsinline autoplay muted loop>
+      <source src=" ./static/videos/teaser-small.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="hero-video is-hidden-tablet is-inline-block-mobile"
+    style="height: 154.28571428vw; width: 100%; min-width:64.81481481vh;min-height:100%;">
+    <video playsinline autoplay muted loop>
+      <source src="./static/videos/teaser-mobile-small.mp4" type="video/mp4">
+    </video>
+  </div>
+  <div class="overlay"></div>
+  <!-- Hero head: will stick at the top -->
+  <!-- <div class="hero-head is-hidden-mobile">
+    <header class="navbar">
+      <div class="container is-size-5">
+        <div class="navbar-menu">
+          <div class="navbar-end">
+
+
+          </div>
+        </div>
+      </div>
+    </header>
+  </div> -->
+
+  <!-- Hero content: will be in the middle -->
+  <div class="hero-body">
+    <div class="container has-text-centered">
+      <h1 class="title is-1 publication-title is-size-1-mobile" style="font-size: 12rem;">
+        CLONE
+      </h1>
+      <h1 class="subtitle is-1 publication-title is-size-4-mobile" style="font-size: 3rem;">
+        Holistic Closed-Loop Whole-Body Teleoperation <br class="is-hidden-mobile"> for Long-Horizon Humanoid Control
+      </h1>
+
+      <h1 class="is-2 is-italic is-size-4-mobile" style="font-size: 2rem; opacity: 80%;">
+        In Submission
+      </h1>
+    </div>
+
+  </div>
+
+  <!-- Hero footer: will stick at the bottom -->
+  <div class="hero-foot is-hidden-mobile">
+    <nav class="tabs is-boxed is-fullwidth is-size-5">
+      <ul>
+        <li><a href="#whole">Whole-Body Tracking</a></li>
+        <li><a href="#interactive">Interactive Tasks</a></li>
+        <li><a href="#long">Long-Horizon Interactive Tasks</a></li>
+      </ul>
+    </nav>
+  </div>
+</section>
+
+
+
+
+<section class="section is-medium" id="overview">
+  <div class="container is-max-desktop">
+    <div class="columns is-centered">
+      <div class="column is-five-fifths has-text-justified is-hidden-mobile is-size-5">
+        <h2 class="subtitle ">
+          <b>CLONE</b> is a lightweight whole-body teleoperation system that <b>achieves
+          comprehensive robot control</b> using only head and hand poses
+          from a VR headset. It enabeles previously unattainable dexterous loco-manipulation tasks, 
+          such as picking up an object from the ground and placing it in a distant bin, facilitating
+          the <b>collection of long-horizon interaction data</b> and establishes <b>a foundation for 
+          more capable human-robot interaction</b> in both research and practical applications.
+          <!-- <b>HoliTele</b> is a lightweight whole-body teleoperation system that achieves
+          comprehensive robot control using only head and hand poses
+          from a VR headset. It adopts a <b>unified MoE framework</b> that integrates 
+          <b>systematic hand pose augmentation</b> and <b>closed-loop error correction mechanism</b>, 
+          enabeling previously unattainable dexterous loco-manipulation tasks 
+          such as picking up an object from the ground and placing it in a distant bin.  -->
+        </h2>
+        <!-- <br> -->
+        <!-- <h2 class="subtitle">
+          <b>HoliTele</b> also facilitates the collection of long-horizon interaction data 
+          and establishes a foundation for more capable human-robot interaction in 
+          both research and practical applications.
+        </h2> -->
+      </div>
+
+      <div class="column is-five-fifths is-hidden-tablet has-text-justified-mobile is-size-5">
+        <b>CLONE</b> is a lightweight whole-body teleoperation system that <b>achieves
+          comprehensive robot control</b> using only head and hand poses
+          from a VR headset. It enabeles previously unattainable dexterous loco-manipulation tasks, 
+          such as picking up an object from the ground and placing it in a distant bin, facilitating
+          the <b>collection of long-horizon interaction data</b> and establishes <b>a foundation for 
+          more capable human-robot interaction</b> in both research and practical applications.
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<section class="section" id="How?">
+  <div class="container is-max-desktop">
+    <h2 class="title is-1 has-text-centered is-size-4-mobile">How?</h2>
+    <div class="columns is-centered">
+      <div class="column has-text-justified is-five-fifths is-hidden-mobile is-size-5">
+        <!-- <p>
+          <b>Hand Pose Augmentation</b> -- augment reference motions that cover diverse scenarios.
+        </p>
+        <p>
+          <b>Closed-Loop Error Correction Mechanism</b> -- correct stepwise errors to overcome accumulated errors over time.
+        </p>
+        <p>
+          <b>Unified MoE Framework </b> -- learn a wide range of motions with different patterns under a unified policy.
+        </p> -->
+        <p>
+          <b>Hand Pose Augmentation</b> -- augment reference motions that cover diverse scenarios.
+        </p>
+        <p>
+          <b>Closed-Loop Error Correction</b> -- correct stepwise errors to overcome accumulated errors over time.
+        </p>
+        <p>
+          <b>Unified MoE Framework </b> -- learn a wide range of motions with different patterns under a unified policy.
+        </p>
+      </div>
+      <div class="column has-text-justified is-four-fifths is-hidden-tablet is-size-5">
+        <p>
+          <b>Hand Pose Augmentation</b> -- augment reference motions that cover diverse scenarios.
+        </p>
+        <p>
+          <b>Closed-Loop Error Correction</b> -- correct stepwise errors to overcome accumulated errors over time.
+        </p>
+        <p>
+          <b>Unified MoE Framework </b> -- learn a wide range of motions with different patterns under a unified policy.
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<div style="text-align: center; color: #ff0000;">
+  <p>All videos show real-time teleoperation at 1x speed using a unified policy. </p>
+  </div>
+
+
+  <section class="section", id="whole">
+    <div class="container">
+      <div class="columns is-centered">
+        <div class="column is-full-width">
+          <h2 class="title is-1" style="text-align: center; padding-bottom: 10px;">Whole-Body Tracking</h2>
+          <tr>
+            <td>
+
+              <div class="row" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+                <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
+                  <h3 class="title is-5" style="text-align: center; margin-bottom: 10px;">Changing Different Poses while Walking</h3>
+                  <video autoplay muted loop playsinline controls src="./resources/tracking/outdoor_1.MP4" width="100%"
+                         style="border-radius:10px; display: block;"></video>
+                         <!-- <p style="text-align: center; margin-top: 8px; font-size: 0.9em; color: #666;">
+                          Teleoperating the humanoid over a long horizon to evaluate the effectiveness of the closed-loop error correction mechanism while transitioning through different poses during walking.
+                        </p> -->
+                </div>
+
+                <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
+                  <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Hand Pose Tracking</h3>
+                  <video autoplay muted loop playsinline controls src="./resources/tracking/upperbody_tracking_1.MP4" width="100%"
+                         style="border-radius:10px; display: block;"></video>
+                         <!-- <p style="text-align: center; margin-top: 8px; font-size: 0.9em; color: #666;">
+                          Tracking the humanoid's upper body motion with hand poses.
+                        </p> -->
+                </div>
+              </div>
+  
+              <br>
+  
+              <div class="row" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+                <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
+                  <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Turning</h3>
+                  <video autoplay muted loop playsinline controls src="./resources/tracking/turning_1.MP4" width="100%"
+                         style="border-radius:10px; display: block;"></video>
+                         <!-- <p style="text-align: center; margin-top: 8px; font-size: 0.9em; color: #666;">
+                          Teleoperating the humanoid to turn around while walking.
+                        </p> -->
+                </div>
+                
+                <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
+                  <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Side Stepping</h3>
+                  <video autoplay muted loop playsinline controls src="./resources/tracking/side_stepping_1.MP4" width="100%"
+                         style="border-radius:10px; display: block;"></video>
+                         <!-- <p style="text-align: center; margin-top: 8px; font-size: 0.9em; color: #666;">
+                          Teleoperating the humanoid to side step while walking.
+                        </p> -->
+                </div>
+              </div>
+  
+              <br>
+  
+              <div class="row" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+                <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
+                  <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Squat and Walking</h3>
+                  <video autoplay muted loop playsinline controls src="./resources/tracking/squatwalking_1.mp4" width="100%"
+                         style="border-radius:10px; display: block;"></video>
+                         <!-- <p style="text-align: center; margin-top: 8px; font-size: 0.9em; color: #666;">
+                          Teleoperating the humanoid to squat and walk.
+                        </p> -->
+                </div>
+                
+                <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
+                  <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Robustness & Global Position Tracking</h3>
+                  <video autoplay muted loop playsinline controls src="./resources/tracking/robustness_1.mp4" width="100%"
+                         style="border-radius:10px; display: block;"></video>
+                         <!-- <p style="text-align: center; margin-top: 8px; font-size: 0.9em; color: #666;">
+                          Testing the humanoid robustness to global position tracking and dynamic disturbances.
+                        </p> -->
+                </div>
+              </div>
+
+
+              <br>
+              <div class="row" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+                <div class="col" style="flex: 1; min-width: 300px; max-width: 600px;">
+                  <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Circle Walking</h3>
+                  <video autoplay muted loop playsinline controls src="./resources/tracking/circling_1.MP4" width="100%"
+                         style="border-radius:10px; display: block;"></video>
+                         <!-- <p style="text-align: center; margin-top: 8px; font-size: 0.9em; color: #666;">
+                          Teleoperating the humanoid to circle walk.
+                        </p> -->
+                </div>
+                
+                <!-- <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
+                  <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">PlaceHolder</h3>
+                  <video autoplay muted loop playsinline controls src="./resources/tracking/" width="100%"
+                         style="border-radius:10px; display: block;"></video>
+                </div> -->
+              </div>
+  
+            </td>
+          </tr>
+        </div> 
+      </div>
+    </div>
+  </section>
+  
+
+
+<section class="section", id="interactive">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-1" style="text-align: center; padding-bottom: 10px;">Interactive Tasks</h2>
+        <tr>
+          <td>
+
+            <div class="row" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+              <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
+                <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Playing Table Tennis</h3>
+                <video autoplay muted loop playsinline controls src="./resources/tabletennis/succ/tabletennis1_1.mp4" width="100%"
+                       style="border-radius:10px; display: block;"></video>
+                       <p style="text-align: center; margin-top: 8px; font-size: 0.9em; color: #666;">
+                        Teleoperating the humanoid to play table tennis using forehand strokes driven by waist movement.
+                      </p>
+              </div>
+              
+              <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
+                <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Playing Table Tennis</h3>
+                <video autoplay muted loop playsinline controls src="./resources/tabletennis/succ/tabletennis2_1.mp4" width="100%"
+                       style="border-radius:10px; display: block;"></video>
+                       <p style="text-align: center; margin-top: 8px; font-size: 0.9em; color: #666;">
+                        Teleoperating the humanoid to play table tennis using backhand strokes.
+                      </p>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="row" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+              <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
+                <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Tabletop Manipulation</h3>
+                <video autoplay muted loop playsinline controls src="./resources/tabletopmanip/table_handover_2_1.mp4" width="100%"
+                       style="border-radius:10px; display: block;"></video>
+                       <!-- <p style="text-align: center; margin-top: 8px; font-size: 0.9em; color: #666;">
+                        Teleoperating the humanoid to manipulate objects on the tabletop.
+                      </p> -->
+              </div>
+              
+              <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
+                <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Tabletop Handover</h3>
+                <video autoplay muted loop playsinline controls src="./resources/tabletopmanip/table_handover_1.MP4" width="100%"
+                       style="border-radius:10px; display: block;"></video>
+                       <!-- <p style="text-align: center; margin-top: 8px; font-size: 0.9em; color: #666;">
+                        Teleoperating the humanoid to handover an object from one hand to another hand.
+                      </p> -->
+              </div>
+            </div>
+
+          </td>
+        </tr>
+      </div> 
+    </div>
+  </div>
+</section>
+
+
+<section class="section", id="long">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-full-width">
+        <h2 class="title is-2" style="text-align: center; padding-bottom: 10px;">Long-Horizon Interactive Tasks</h2>
+        <tr>
+          <td>
+
+            <div class="row" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+              <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
+                <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Picking up a Peach From the Ground</h3>
+                <video autoplay muted loop playsinline controls src="./resources/long-horizon/pickfromground1_1.mp4" width="100%"
+                       style="border-radius:10px; display: block;"></video>
+                       <!-- <p style="text-align: center; margin-top: 8px; font-size: 0.9em; color: #666;">
+                        Teleoperating the humanoid to pick up a peach from the ground.
+                      </p> -->
+              </div>
+              
+              <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
+                <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Picking up a Box From the Ground</h3>
+                <video autoplay muted loop playsinline controls src="./resources/long-horizon/pickfromground2_1.mp4" width="100%"
+                       style="border-radius:10px; display: block;"></video>
+                       <!-- <p style="text-align: center; margin-top: 8px; font-size: 0.9em; color: #666;">
+                        Teleoperating the humanoid to pick up a box from the ground.
+                      </p> -->
+              </div>
+            </div>
+
+            <br>
+
+            <div class="row" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+              <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
+                <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Pick and Place</h3>
+                <video autoplay muted loop playsinline controls src="./resources/long-horizon/pickandplace1_1.mp4" width="100%"
+                       style="border-radius:10px; display: block;"></video>
+                       <!-- <p style="text-align: center; margin-top: 8px; font-size: 0.9em; color: #666;"> -->
+                        <!-- Your caption text goes here -->
+                        <!-- Teleoperating the humanoid to pick and place a box. -->
+                      <!-- </p> -->
+              </div>
+              
+              <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
+                <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Pick and Place</h3>
+                <video autoplay muted loop playsinline controls src="./resources/long-horizon/pickandplace2_1.mp4" width="100%"
+                       style="border-radius:10px; display: block;"></video>
+              </div>
+            </div>
+
+            <br>
+
+            <div class="row" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
+
+              <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
+                <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Squat and Wipe the Blackboard</h3>
+                <video autoplay muted loop playsinline controls src="./resources/long-horizon/blackboard_2.mp4" width="100%"
+                       style="border-radius:10px; display: block;"></video>
+              </div>
+              
+              <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
+                <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Wipe the Blackboard</h3>
+                <video autoplay muted loop playsinline controls src="./resources/long-horizon/blackboard.mp4" width="100%"
+                       style="border-radius:10px; display: block;"></video>
+              </div>
+            </div>
+
+          </td>
+        </tr>
+      </div> 
+    </div>
+  </div>
+</section>
+
+
+
+
+
+<footer class="footer">
+  <div class="container">
+    <div class="columns is-centered">
+      <div class="column is-8">
+        <div class="content">
+          <p>
+            Website template modified from <a href="https://nerfies.github.io/">NeRFies</a> and <a
+              href="https://umi-on-legs.github.io/">Umi-on-Legs</a>.
+          </p>
+          <p>
+            This website is licensed under a <a rel="license"
+              href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
+              Commons Attribution-ShareAlike 4.0 International License</a>.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+</body>
+
+</html>

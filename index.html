@@ -1,450 +1,520 @@
 <!DOCTYPE html>
-<html>
+<!-- saved from url=(0027)https://www.videomimic.net/ -->
+<html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+  
+  <title>CLONE</title>
+  <link rel="icon" href="https://www.videomimic.net/figs/logo.png" type="image/png">
+  <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
+  <link rel="stylesheet" href="./static/style.css">
 
-<head>
-  <meta charset="utf-8">
-  <meta name="description"
-    content="CLONE: Holistic Closed-Loop Whole-Body Teleoperation for Long-Horizon Humanoid Control">
-  <meta name="keywords" content="Humanoid, Whole-body Control, Humanoid-Environment interaction">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>
-    CLONE: Holistic Closed-Loop Whole-Body Teleoperation for Long-Horizon Humanoid Control
-  </title>
+</style></head>
+<body data-new-gr-c-s-check-loaded="14.1235.0" data-gr-ext-installed="">
+  <div class="toc">
+    <h3>Content</h3>
+    <hr>
+    <ul>
+      <li><a href="https://www.videomimic.net/#abstract">Abstract</a></li>
+      <li><a href="https://www.videomimic.net/#deploy-in-real">Real-world Demo</a></li>
+      <li><a href="https://www.videomimic.net/#approach">Approach</a></li>
+      <li class="toc-subsection"><a href="https://www.videomimic.net/#real-to-sim">Real to Sim</a></li>
+      <li class="toc-subsection"><a href="https://www.videomimic.net/#training-in-sim">Training in Sim</a></li>
+      <li><a href="https://www.videomimic.net/#acknowledgements">Acknowledgements</a></li>
+    </ul>
+  </div>
+
+  <div class="main-content">
+    <div class="hero-text">CLONE</div>
+    <div class="sub-hero-text">Holistic Closed-Loop Whole-Body Teleoperation for Long-Horizon Humanoid Control</div>
+
+    <!-- Add Authors -->
+    <div class="authors">
+      <a href="https://allshire.org/" target="_blank">Arthur Allshire*</a>, <a href="https://hongsukchoi.github.io/" target="_blank">Hongsuk Choi*</a>, <a href="https://www.junyi42.com/" target="_blank">Junyi Zhang*</a>, <a href="https://mcallisterdavid.com/" target="_blank">David McAllister*</a>, <a href="https://antoniomacaronio.github.io/personal-website/#/home/" target="_blank">Anthony Zhang</a>, <a href="https://chungmin99.github.io/" target="_blank">Chung Min Kim</a>,<br>
+      <a href="https://people.eecs.berkeley.edu/~trevor/" target="_blank">Trevor Darrell</a>, <a href="https://people.eecs.berkeley.edu/~pabbeel/" target="_blank">Pieter Abbeel</a>, <a href="https://people.eecs.berkeley.edu/~malik/" target="_blank">Jitendra Malik</a>, <a href="https://people.eecs.berkeley.edu/~kanazawa/" target="_blank">Angjoo Kanazawa.</a>
+      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(*:equal contribution)
+      <span class="affiliation">University of California, Berkeley</span>
+    </div>
+    <!-- End Authors -->
+
+    <!-- use the video ./figs/videomimic_teaser.mp4 -->
+    <video id="teaser-video" src="./figs/videomimic_teaser.mp4" width="100%" height="100%" controls="" muted="" playsinline="" autoplay=""></video>
+    <!-- Caption for Figure 1 (Teaser Video) -->
+    <p class="figure-caption">
+        <span style="font-variant: small-caps;">VideoMimic</span> is a real-to-sim-to-real pipeline that converts monocular videos into transferable humanoid skills, letting robots learn context-aware behaviors (terrain-traversing, climbing, sitting) in a single policy.
+    </p>
+
+    <!-- Add Quick Links Here -->
+    <div class="quick-links">
+      <a href="https://www.videomimic.net/VideoMimic.pdf" target="_blank">[pdf]</a>
+      <a href="https://arxiv.org/abs/2505.03729" target="_blank">[arxiv]</a>
+      <a href="https://github.com/hongsukchoi/VideoMimic">[code(soon)]</a> 
+      <!-- <a href="#gallery-section-anchor">[gallery]</a> -->
+    </div>
+    
+    <div class="tagline" id="abstract">Abstract.</div>
 
 
-  <meta name="application-name" content="CLONE" />
-  <meta name="msapplication-TileColor" content="#FFFFFF" />
+    <div class="section">
 
-  <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-QZ38WT2YPD"></script>
+        How can we teach humanoids to climb staircases and sit on chairs using the surrounding environment context? Arguably, the simplest way is to <em>just show them</em>—casually capture a human motion video and feed it to humanoids.
+        We introduce <span style="font-variant: small-caps;">VideoMimic</span>, a real-to-sim-to-real pipeline that mines everyday videos, jointly reconstructs the humans and the environment, and produces whole-body control policies for humanoid robots that perform the corresponding skills.
+       We demonstrate the results of our pipeline on real humanoid robots, showing robust, repeatable contextual control such as staircase ascents and descents, sitting and standing from chairs and benches, as well as other dynamic whole-body skills—all from a single policy, conditioned on the environment and global root commands. 
+       <span style="font-variant: small-caps;">VideoMimic</span> offers a scalable path towards teaching humanoids to operate in diverse real-world environments.
+    
+    </div> 
+
+    <div class="tagline" id="deploy-in-real">Real-world Demo.</div>
+
+    <!-- Video Gallery Section - STAIRS VIDEOS -->
+    <div class="video-gallery-section" id="stairsGallerySection">
+      <div class="video-gallery-container">
+        <div class="video-gallery" id="videoGalleryStairs">
+          <!-- Videos remain here - ADD autoplay -->
+          <video class="gallery-video" src="./stairs/1.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+          <video class="gallery-video" src="./stairs/2.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+          <video class="gallery-video" src="./stairs/7.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+          <video class="gallery-video" src="./stairs/4.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+          <video class="gallery-video" src="./stairs/5.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+          <video class="gallery-video" src="./stairs/6.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+          <video class="gallery-video" src="./stairs/3.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+          <video class="gallery-video" src="./stairs/8.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+          <!-- Add more videos as needed, ensuring they have autoplay muted loop -->
+        </div>
+      </div>
+      <!-- Container for the caption AND buttons -->
+      <div class="gallery-caption-container">
+          <!-- Move button controls INSIDE caption container -->
+          <div class="gallery-nav-controls">
+              <button class="gallery-nav left" id="scrollLeftBtnStairs">&lt;</button>
+              <button class="gallery-nav right" id="scrollRightBtnStairs">&gt;</button>
+          </div>
+          <!-- Caption text -->
+          <p class="figure-caption gallery-caption">
+              <b>Stairs climbing up/down:</b> The robot confidently ascends and descends various staircases, showcasing stable and adaptive locomotion.
+          </p>
+      </div>
+    </div>
+  <!-- End Video Gallery Section -->
+
+  <!-- Video Gallery Section - SITTING VIDEOS -->
+  <div class="video-gallery-section" id="gallery-section-anchor">
+    <div class="video-gallery-container">
+      <div class="video-gallery" id="videoGallerySitting">
+        <!-- Videos remain here - ADD autoplay -->
+        <video class="gallery-video" src="./sitting/5.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+        <video class="gallery-video" src="./sitting/3.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+        <video class="gallery-video" src="./sitting/1.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+        <video class="gallery-video" src="./sitting/2.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+        <video class="gallery-video" src="./sitting/4.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+        <video class="gallery-video" src="./sitting/0.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+        <!-- Add more videos as needed, ensuring they have autoplay muted loop -->
+      </div>
+    </div>
+    <!-- Container for the caption AND buttons -->
+    <div class="gallery-caption-container">
+        <!-- Move button controls INSIDE caption container -->
+        <div class="gallery-nav-controls">
+            <button class="gallery-nav left" id="scrollLeftBtnSitting">&lt;</button>
+            <button class="gallery-nav right" id="scrollRightBtnSitting">&gt;</button>
+        </div>
+        <!-- Caption text -->
+        <p class="figure-caption gallery-caption">
+            <b>Sitting/Standing:</b> Our robot demonstrates smooth sitting and standing behaviors on different chairs and benches, adapting to object heights and shapes.
+        </p>
+    </div>
+  </div>
+  <!-- End Video Gallery Section -->
+
+  <!-- Video Gallery Section - TRAVERSING VIDEOS -->
+    <div class="video-gallery-section" id="traversingGallerySection">
+      <div class="video-gallery-container">
+        <div class="video-gallery" id="videoGalleryTraversing">
+          <!-- Videos remain here - ADD autoplay -->
+          <video class="gallery-video" src="./traversing/1.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+          <video class="gallery-video" src="./traversing/5.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+          <video class="gallery-video" src="./traversing/7.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+          <video class="gallery-video" src="./traversing/4.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+          <video class="gallery-video" src="./traversing/2.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+          <video class="gallery-video" src="./traversing/6.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+          <video class="gallery-video" src="./traversing/3.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+          <!-- Add more videos as needed, ensuring they have autoplay muted loop -->
+        </div>
+      </div>
+      <!-- Container for the caption AND buttons -->
+      <div class="gallery-caption-container">
+          <!-- Move button controls INSIDE caption container -->
+          <div class="gallery-nav-controls">
+              <button class="gallery-nav left" id="scrollLeftBtnTraversing">&lt;</button>
+              <button class="gallery-nav right" id="scrollRightBtnTraversing">&gt;</button>
+          </div>
+          <!-- Caption text -->
+          <p class="figure-caption gallery-caption">
+              <b>Terrain traversing:</b> Watch the humanoid navigate diverse terrains, including uneven ground, slopes, and stepping over small obstacles.
+          </p>
+      </div>
+    </div>
+  <!-- End Video Gallery Section -->
+    <div class="tagline" id="approach">Approach.</div>
+
+    <div class="r2s-vertical-layout">
+      <div class="r2s-video-row r2s-top-row">
+        <video class="r2s-video-item r2s-video-input" src="./single/input.mp4" autoplay="" muted="" loop="" playsinline=""></video>
+        <video class="r2s-video-item r2s-video-smpl" src="./single/smpl.mp4" autoplay="" muted="" loop="" playsinline=""></video>
+      </div>
+      <div class="r2s-caption-row">
+        <p class="r2s-caption-item">Input Video</p>
+        <p class="r2s-caption-item">Human + Scene Reconstruction</p>
+      </div>
+      <div class="r2s-video-row r2s-bottom-row">
+        <video class="r2s-video-item r2s-video-g1" src="./single/g1.mp4" autoplay="" muted="" loop="" playsinline=""></video>
+        <div class="stacked-ego-videos">
+          <video class="r2s-video-item r2s-video-ego-rgb" src="./single/ego_rgb.mp4" autoplay="" muted="" loop="" playsinline=""></video>
+          <video class="r2s-video-item r2s-video-ego-depth" src="./single/ego_depth.mp4" autoplay="" muted="" loop="" playsinline=""></video>
+        </div>
+        <video class="r2s-video-item r2s-video-sim" src="./single/sim.mp4" autoplay="" muted="" loop="" playsinline=""></video>
+      </div>
+      <div class="r2s-caption-row">
+        <p class="r2s-caption-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;G1 Retargeted Results</p>
+        <p class="r2s-caption-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Egoview (RGB/Depth)</p>
+        <p class="r2s-caption-item">Training in Simulation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+      </div>
+      <p class="figure-caption">
+        <b>From a monocular video, we jointly reconstruct metric-scale 4D human trajectories and dense scene geometry. The human motion is retargeted to a humanoid, and with the scene converted to a mesh in the simulator, the motion is used as a reference to train a context-aware whole-body control policy. While our policy does not use RGB conditioning for now, we demonstrate the potential of our reconstruction for ego-view rendering.</b>
+      </p>
+    </div>
+
+    <div class="section-subtitle" id="real-to-sim">1. Real to Sim.</div>
+
+  <!-- Video Gallery Section - SITTING VIDEOS -->
+  <div class="video-gallery-section" id="reconstructionGallerySection">
+    <div class="video-gallery-container">
+      <div class="video-gallery" id="videoGalleryReconstruction">
+        <!-- Videos remain here - ADD autoplay -->
+        <video class="gallery-video" src="./reconstruction/6.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+        <video class="gallery-video" src="./reconstruction/11.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+        <video class="gallery-video" src="./reconstruction/13.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+        <video class="gallery-video" src="./reconstruction/7.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+        <video class="gallery-video" src="./reconstruction/14.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+        <!-- Add more videos as needed, ensuring they have autoplay muted loop -->
+      </div>
+    </div>
+    <!-- Container for the caption AND buttons -->
+    <div class="gallery-caption-container">
+        <!-- Move button controls INSIDE caption container -->
+        <div class="gallery-nav-controls">
+            <button class="gallery-nav left" id="scrollLeftBtnReconstruction">&lt;</button>
+            <button class="gallery-nav right" id="scrollRightBtnReconstruction">&gt;</button>
+        </div>
+        <!-- Caption text -->
+        <p class="figure-caption gallery-caption" style="margin-bottom: 30px;">
+            <b>Human + World Reconstruction:</b> Our reconstruction pipeline can handle videos with multiple humans and complex environments from Internet. More results in the <a href="https://www.videomimic.net/page1.html" target="_blank">gallery</a>.
+        </p>
+    </div>
+  </div>
+  <!-- End Video Gallery Section -->
+
+    <a id="figure-1-img" href="https://www.videomimic.net/figs/2.png" download="2.png">
+      <img src="./VideoMimic_files/2-min.png" alt="real-to-sim pipeline">
+    </a>
+    <!-- Caption for Figure 2 -->
+    <p class="figure-caption">
+      <b>Figure 1:</b> The Real-to-Sim pipeline reconstructs human motion and scene geometry from video, outputting simulator-ready data.
+    </p>
+
+    <a id="figure-2-img" href="https://www.videomimic.net/figs/4.png" download="4.png">
+      <img src="./VideoMimic_files/4-min.png" alt="Approach Overview">
+    </a>
+    <!-- Caption for Figure 2 -->
+    <p class="figure-caption">
+      <b>Figure 2:</b> Versatile capabilities include handling internet videos, multi-human reconstruction, and ego-view rendering.
+    </p>
+
+    <div class="section-subtitle" id="training-in-sim">2. Training in Sim.</div>
+
+    <a id="figure-3-img" href="https://www.videomimic.net/figs/3.png" download="3.png">
+      <img src="./VideoMimic_files/3-min.png" alt="Training in Sim">
+    </a>
+    <!-- Caption for Figure 3 -->
+    <p class="figure-caption">
+      <b>Figure 3:</b> Policy training pipeline in simulation, progressing from MoCap pre-training to environment-aware tracking and distillation.
+    </p>
+
+    <div class="tagline" id="acknowledgements">Acknowledgements.</div>
+    <div class="section" style="margin-top: -5px;">
+      <p>
+        We thank Brent Yi for his guidance with the excellent 3D visualization tool we use, Viser. We
+        are grateful to Ritvik Singh, Jason Liu, Ankur Handa, Ilija Radosavovic, Himanshu Gaurav-Singh,
+        Haven Feng, and Kevin Zakka for helpful advice and discussions during the paper. We thank Lea
+        Müller for helpful discussions at the start of the project. We thank Zhizheng Liu for helpful
+        suggestions on evaluating human and scene reconstruction. We thank Moji Shi and Huayi Wang for
+        advice on using LiDAR heightmap input. We thank Eric Xu, Matthew Liu, Hayeon
+        Jeong, Hyunjoo Lee, Jihoon Choi, Tyler Bonnen, and Yao Tang for their help in capturing and
+        featuring in the video clips used in this project.
+      </p>
+    </div>
+
+    <div class="bibtex-code" id="bibtex">
+      <div class="bibtex-title">BibTeX</div>
+      <pre><code>@article{videomimic,
+          title     = {Visual imitation enables contextual humanoid control},
+          author    = {Allshire, Arthur and Choi, Hongsuk and Zhang, Junyi and McAllister, David 
+                       and Zhang, Anthony and Kim, Chung Min and Darrell, Trevor and Abbeel, 
+                       Pieter and Malik, Jitendra and Kanazawa, Angjoo},
+          journal   = {arXiv preprint arXiv:2505.03729},
+          year      = {2025}
+        }</code></pre>
+    </div>
+
+  </div> <!-- End of main-content div -->
+
+
+  <div class="footer">
+    <!-- © UC Berkeley | Powered by vision, motion, and a little ambition. -->
+    Website template modified from <a href="https://www.videomimic.net/">VideoMimic</a>.
+  </div>
+
+  <!-- Teaser Video Autoplay with Delay and Loop -->
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
-    gtag('config', 'G-QZ38WT2YPD');
+  document.addEventListener('DOMContentLoaded', function() {
+    const video = document.getElementById('teaser-video');
+    // const initialDelay = 1000; // No longer needed, autoplay attribute handles initial play
+    const loopDelay = 3000;    // 3 seconds delay before looping
+
+    // let initialPlayTimeout; // No longer needed
+    let loopTimeout;
+
+    if (video) {
+      // Ensure video is muted (already in HTML, but good practice)
+      video.muted = true;
+      // Controls are already in HTML, ensuring user can play if autoplay fails
+
+      // REMOVE JavaScript-based initial play:
+      /*
+      initialPlayTimeout = setTimeout(function() {
+        video.play().then(function() {
+          // Autoplay started
+        }).catch(function(error) {
+          console.log('Initial autoplay prevented for teaser video. User interaction might be needed.', error);
+          video.controls = true; // Ensure controls are visible
+        });
+      }, initialDelay);
+      */
+
+      // Loop with delay - this part can stay
+      video.addEventListener('ended', function() {
+        clearTimeout(loopTimeout); 
+        loopTimeout = setTimeout(function() {
+          video.currentTime = 0; 
+          video.play().catch(function(error) {
+            console.log('Delayed loop play prevented for teaser video:', error);
+          });
+        }, loopDelay);
+      });
+
+      // --- Clear Timeouts on Manual Pause ---
+      video.addEventListener('pause', function() {
+        if (!video.ended && video.currentTime > 0) {
+           // clearTimeout(initialPlayTimeout); // No longer needed
+           clearTimeout(loopTimeout);
+           console.log('Teaser video: Manual pause detected, clearing loop timeout.');
+        }
+      });
+
+      // --- Clear Timeouts on Manual Play (if paused before initial delay finishes) ---
+       video.addEventListener('play', function() {
+           // if (initialPlayTimeout) { // No longer needed
+           //     clearTimeout(initialPlayTimeout);
+           // }
+       });
+
+    } else {
+      console.error('Video element with ID "teaser-video" not found.');
+    }
+  });
   </script>
 
-  <link href="https://fonts.googleapis.com/css?family=Google+Sans|Noto+Sans|Castoro" rel="stylesheet">
-  <link rel="stylesheet" href="./static/css/bulma.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-carousel.min.css">
-  <link rel="stylesheet" href="./static/css/bulma-slider.min.css">
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/jpswalsh/academicons@1/css/academicons.min.css">
-  <link rel="stylesheet" href="./static/css/index.css">
+  <!-- JavaScript for Video Gallery Navigation -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const galleries = [
+        {
+          sectionId: 'gallery-section-anchor', // ID of the .video-gallery-section for sitting
+          galleryInnerId: 'videoGallerySitting',
+          scrollLeftBtnId: 'scrollLeftBtnSitting',
+          scrollRightBtnId: 'scrollRightBtnSitting'
+        },
+        {
+          sectionId: 'traversingGallerySection', // ID of the .video-gallery-section for traversing
+          galleryInnerId: 'videoGalleryTraversing',
+          scrollLeftBtnId: 'scrollLeftBtnTraversing',
+          scrollRightBtnId: 'scrollRightBtnTraversing'
+        },
+        {
+          sectionId: 'stairsGallerySection', // ID of the .video-gallery-section for stairs
+          galleryInnerId: 'videoGalleryStairs',
+          scrollLeftBtnId: 'scrollLeftBtnStairs',
+          scrollRightBtnId: 'scrollRightBtnStairs'
+        },
+        {
+          sectionId: 'reconstructionGallerySection', // ID of the .video-gallery-section for reconstruction
+          galleryInnerId: 'videoGalleryReconstruction',
+          scrollLeftBtnId: 'scrollLeftBtnReconstruction',
+          scrollRightBtnId: 'scrollRightBtnReconstruction'
+        }
+      ];
 
-  <script src="https://kit.fontawesome.com/19914a84eb.js" crossorigin="anonymous"></script>
+      galleries.forEach(galleryConfig => {
+        const gallerySection = document.getElementById(galleryConfig.sectionId);
+        if (!gallerySection) {
+          console.error(`Gallery section with ID ${galleryConfig.sectionId} not found.`);
+          return;
+        }
 
-  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-  <script src="./static/js/bulma-carousel.min.js"></script>
-  <script src="./static/js/bulma-slider.min.js"></script>
-  <script src="./static/js/index.js"></script>
+        const galleryContainer = gallerySection.querySelector('.video-gallery-container');
+        const galleryInner = document.getElementById(galleryConfig.galleryInnerId);
+        const scrollLeftBtn = document.getElementById(galleryConfig.scrollLeftBtnId);
+        const scrollRightBtn = document.getElementById(galleryConfig.scrollRightBtnId);
 
-  <style>
-    .publication-authors,
-    .publication-authors .author-block,
-    .publication-authors a,
-    .publication-authors sup {
-      color: white !important;
+        if (galleryContainer && galleryInner && scrollLeftBtn && scrollRightBtn) {
+          // Calculate the scroll amount based on the width of the first video + gap
+          const scrollAmount = (galleryInner.firstElementChild?.offsetWidth || 300) + 15; // 15 is the gap
+
+          scrollLeftBtn.addEventListener('click', () => {
+            // Scroll the CONTAINER element
+            galleryContainer.scrollBy({ left: -scrollAmount, behavior: 'smooth' });
+          });
+
+          scrollRightBtn.addEventListener('click', () => {
+            // Scroll the CONTAINER element
+            galleryContainer.scrollBy({ left: scrollAmount, behavior: 'smooth' });
+          });
+
+          /* --- REMOVE OR COMMENT OUT HOVER LOGIC ---
+          // Optional: Add hover-to-play functionality for gallery videos
+          // Target videos within galleryInner
+          const galleryVideos = galleryInner.querySelectorAll('.gallery-video');
+          galleryVideos.forEach(video => {
+              video.addEventListener('mouseenter', () => {
+                  video.play().catch(e => console.log("Autoplay prevented:", e));
+              });
+              video.addEventListener('mouseleave', () => {
+                  video.pause();
+                  // video.currentTime = 0; // Optional: reset video on mouse leave
+              });
+          });
+          */ // --- END OF REMOVED HOVER LOGIC ---
+
+        } else {
+          console.error(`Gallery elements not found for navigation setup in section ${galleryConfig.sectionId}.`);
+          // Log which elements might be missing
+          if (!galleryContainer) console.error('Missing element: .video-gallery-container in section ' + galleryConfig.sectionId);
+          if (!galleryInner) console.error(`Missing element with ID ${galleryConfig.galleryInnerId}`);
+          if (!scrollLeftBtn) console.error(`Missing element with ID ${galleryConfig.scrollLeftBtnId}`);
+          if (!scrollRightBtn) console.error(`Missing element with ID ${galleryConfig.scrollRightBtnId}`);
+        }
+      });
+    });
+  </script>
+
+  <!-- JavaScript for Real-to-Sim Video Synchronization -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const videosToSync = [
+        document.querySelector('.r2s-video-input'),
+        document.querySelector('.r2s-video-smpl'),
+        document.querySelector('.r2s-video-g1'),
+        document.querySelector('.r2s-video-ego-rgb'),
+        document.querySelector('.r2s-video-ego-depth'),
+        document.querySelector('.r2s-video-sim')
+      ].filter(Boolean); // Filter out nulls if any class name is wrong or video missing
+
+      function synchronizeAndPlayR2SVideos() {
+        if (videosToSync.length === 0) {
+          console.warn('No videos found for Real-to-Sim synchronization.');
+          return;
+        }
+
+        const readyPromises = videosToSync.map(video => {
+          return new Promise((resolve, reject) => {
+            // If video is already ready (e.g., cached), resolve immediately
+            if (video.readyState >= 4) { // HAVE_ENOUGH_DATA (canplaythrough)
+              resolve();
+            } else {
+              video.addEventListener('canplaythrough', resolve, { once: true });
+              video.addEventListener('error', reject, { once: true }); // Handle potential loading errors
+            }
+          });
+        });
+
+        Promise.all(readyPromises)
+          .then(() => {
+            console.log('All Real-to-Sim videos are ready to play. Starting playback.');
+            videosToSync.forEach(video => {
+              video.currentTime = 0; // Ensure starting from the beginning
+              video.play().catch(error => {
+                console.warn(`Autoplay was prevented for video ${video.src}. User interaction might be needed.`, error);
+                // Ensure controls are visible if autoplay fails for any video
+                video.controls = true;
+              });
+            });
+          })
+          .catch(error => {
+            console.error('Error waiting for Real-to-Sim videos to be ready:', error);
+            // Optionally, provide a fallback or user message here
+            videosToSync.forEach(video => video.controls = true); // Show controls on all if any failed to load
+          });
+      }
+
+      synchronizeAndPlayR2SVideos();
+
+      // The `loop` attribute on the HTML video tags will handle continuous looping.
+      // The videos will naturally re-synchronize at their LCM due to the loop attribute
+      // if they have different durations and all successfully start.
+    });
+  </script>
+
+  <!-- JavaScript to prevent default click on specific image links -->
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const imageLinkIds = ['figure-1-img', 'figure-2-img', 'figure-3-img'];
+      imageLinkIds.forEach(id => {
+        const linkElement = document.getElementById(id);
+        if (linkElement) {
+          linkElement.addEventListener('click', function(event) {
+            event.preventDefault();
+          });
+        }
+      });
+    });
+  </script>
+
+
+
+</body><scispace-div id="scispace-extension-root"><template shadowrootmode="open"><style>
+    :host {
+      all: initial;
+      font-size: initial ;
     }
   </style>
-</head>
+  <link rel="stylesheet" type="text/css" href="chrome-extension://cipccbpjpemcnijhjcdjmkjhmhniiick/static/styles/styles-7fea817b3abad9e3b6bc.css"><div class="container"><div id="scispace-extension-app-root"><div class="box-border h-full w-full"><div class="Toastify"></div><div data-plugin-state="COLLAPSED" data-plugin-context-id="07e3ce7b-90ef-4349-8aef-0a9ecad42fef"></div><div class="relative"><div id="draggableOverlay" class="pointer-events-none fixed inset-0 z-extension box-border h-full w-full bg-transparent p-3"><div class="pointer-events-auto fixed right-0 top-0 z-extension mt-14 h-7 w-max rounded-l-full p-0.5 scispace-extension-draggable" style="transform: translate(0px, 12px);"><div class="group/copilot-pill relative flex w-7 items-center rounded-l-full border border-r-0 border-solid border-neutral-100/60 bg-white/60 pr-1.5 shadow-pill transition-all hover:w-11 hover:border-neutral-100 hover:bg-white aria-pressed:w-11 aria-pressed:border-neutral-100 aria-pressed:bg-white/60" aria-pressed="false"><button class="flex cursor-pointer items-center justify-center gap-2 font-sans text-sm font-semibold
+  focus-visible:outline-none disabled:pointer-events-none disabled:opacity-40 disabled:hover:pointer-events-auto border-0 bg-transparent !p-0 bg-primary-500 px-2 py-1 rounded-full peer/disable-quick-access absolute -left-2 -top-2 hidden h-4 w-4 items-center justify-center !bg-neutral-800/60 hover:!bg-neutral-800 group-hover/copilot-pill:flex peer-hover:!bg-neutral-800/60 aria-pressed:!hidden" aria-pressed="false"><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="xmark" class="svg-inline--fa fa-xmark text-white" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512"><path fill="currentColor" d="M342.6 150.6c12.5-12.5 12.5-32.8 0-45.3s-32.8-12.5-45.3 0L192 210.7 86.6 105.4c-12.5-12.5-32.8-12.5-45.3 0s-12.5 32.8 0 45.3L146.7 256 41.4 361.4c-12.5 12.5-12.5 32.8 0 45.3s32.8 12.5 45.3 0L192 301.3 297.4 406.6c12.5 12.5 32.8 12.5 45.3 0s12.5-32.8 0-45.3L237.3 256 342.6 150.6z"></path></svg></button><span data-state="closed"><span><button class="flex cursor-pointer items-center justify-center gap-2 font-sans text-sm font-semibold
+  focus-visible:outline-none disabled:pointer-events-none disabled:opacity-40 disabled:hover:pointer-events-auto border-0 bg-transparent !p-0 bg-primary-500 px-2 py-1 !p-0 rounded-md !cursor-pointer !p-1.5 !pl-3 opacity-60 group-hover/copilot-pill:opacity-100 aria-pressed:opacity-60" aria-pressed="false"><svg xmlns="http://www.w3.org/2000/svg" width="17" height="18" fill="none" viewBox="0 0 17 18"><path fill="url(#paint0_linear_8778_17378)" fill-rule="evenodd" d="M7.361.43C5.4 1.558 3.831 2.324 1.396 3.797.835 4.136.532 4.7.875 5.322c.77 1.393 1.846 3.433 2.815 5.183a.09.09 0 01-.037.123c-.405.219-1.669.907-2.585 1.446-.99.582-.53 1.59.2 1.974.73.383 1.116.645 1.836 1.052 1.907 1.08 3.257 1.683 4.795 2.509 1.533.687 2.132.398 3.276-.32 2.65-1.666 4.289-2.823 5.02-3.321.688-.469 1.07-1.277.593-2.056-.046-.09-.355-.609-1.24-2.046l-1.663-2.698a.089.089 0 01.03-.122c.757-.485 1.776-1.164 2.28-1.493.522-.34.545-1.329-.112-1.756-1.535-1-3.702-2.154-6.376-3.575-.704-.375-1.54-.255-2.346.208zm4.882 2.272c1.584.936 1.931 1.155 2.425 1.416.639.339.734.654.14 1L9.598 8.2c-.464.275-.884.273-1.349 0l-5.27-2.879c-.543-.303-.921-.848 0-1.319l4.845-2.61c.541-.342 1.202-.462 1.951-.022.625.366 1.257.614 2.47 1.331zM4.28 7.67c1.405.8 1.97 1.168 3.62 2.031 1.088.569 1.636 1.013 2.76.276.542-.356 1.22-.779 2.328-1.383a.099.099 0 01.13.031c.242.375 1.824 2.522 2.347 3.4.325.544.136.82-.263 1.06-.544.327-1.573.998-2.567 1.627-.892.565-1.135.76-2.247 1.443-.7.43-1.486.15-1.947-.575a268.435 268.435 0 01-4.706-7.672c-.798-1.353.01-.543.545-.238zm1.411 6.107c1.964 3.137-2.05.359-3.259-.394-.489-.304-.827-.45-.217-.793.391-.22 1.59-.9 1.912-1.083a.098.098 0 01.13.03c.149.223.626.95 1.434 2.24z" clip-rule="evenodd"></path><defs><lineargradient id="paint0_linear_8778_17378" x1="0.5" x2="17" y1="9" y2="9" gradientUnits="userSpaceOnUse"><stop stop-color="#FA6400"></stop><stop offset="0.536" stop-color="#28AD9D"></stop><stop offset="1" stop-color="#047BB2"></stop></lineargradient></defs></svg></button></span></span><svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="grip-vertical" class="svg-inline--fa fa-grip-vertical ml-0.5 hidden cursor-move text-neutral-800 group-hover/copilot-pill:block peer-hover/disable-quick-access:text-neutral-800/60 aria-pressed:block aria-pressed:text-neutral-800/60" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512" id="drag-handler" aria-pressed="false"><path fill="currentColor" d="M40 352l48 0c22.1 0 40 17.9 40 40l0 48c0 22.1-17.9 40-40 40l-48 0c-22.1 0-40-17.9-40-40l0-48c0-22.1 17.9-40 40-40zm192 0l48 0c22.1 0 40 17.9 40 40l0 48c0 22.1-17.9 40-40 40l-48 0c-22.1 0-40-17.9-40-40l0-48c0-22.1 17.9-40 40-40zM40 320c-22.1 0-40-17.9-40-40l0-48c0-22.1 17.9-40 40-40l48 0c22.1 0 40 17.9 40 40l0 48c0 22.1-17.9 40-40 40l-48 0zM232 192l48 0c22.1 0 40 17.9 40 40l0 48c0 22.1-17.9 40-40 40l-48 0c-22.1 0-40-17.9-40-40l0-48c0-22.1 17.9-40 40-40zM40 160c-22.1 0-40-17.9-40-40L0 72C0 49.9 17.9 32 40 32l48 0c22.1 0 40 17.9 40 40l0 48c0 22.1-17.9 40-40 40l-48 0zM232 32l48 0c22.1 0 40 17.9 40 40l0 48c0 22.1-17.9 40-40 40l-48 0c-22.1 0-40-17.9-40-40l0-48c0-22.1 17.9-40 40-40z"></path></svg></div></div></div></div></div></div></div></template></scispace-div><grammarly-desktop-integration data-grammarly-shadow-root="true"><template shadowrootmode="open"><style>
+      div.grammarly-desktop-integration {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+        -moz-user-select: none;
+        -webkit-user-select: none;
+        -ms-user-select:none;
+        user-select:none;
+      }
 
-<section class="hero is-link is-fullheight video" style="background-color: #9A0000; overflow: hidden; position:relative;">
-  <div class="hero-video" style="height: 100%; width: 177.77777778vh; min-width: 100%;min-height: 56.25vw;">
-    <video playsinline autoplay muted loop>
-      <source src=" ./static/videos/teaser-small.mp4" type="video/mp4">
-    </video>
-  </div>
-  <div class="hero-video is-hidden-tablet is-inline-block-mobile"
-    style="height: 154.28571428vw; width: 100%; min-width:64.81481481vh;min-height:100%;">
-    <video playsinline autoplay muted loop>
-      <source src="./static/videos/teaser-mobile-small.mp4" type="video/mp4">
-    </video>
-  </div>
-  <div class="overlay"></div>
-  <!-- Hero head: will stick at the top -->
-  <!-- <div class="hero-head is-hidden-mobile">
-    <header class="navbar">
-      <div class="container is-size-5">
-        <div class="navbar-menu">
-          <div class="navbar-end">
-
-
-          </div>
-        </div>
-      </div>
-    </header>
-  </div> -->
-
-  <!-- Hero content: will be in the middle -->
-  <div class="hero-body">
-    <div class="container has-text-centered">
-      <h1 class="title is-1 publication-title is-size-1-mobile" style="font-size: 12rem;">
-        CLONE
-      </h1>
-      <h1 class="subtitle is-1 publication-title is-size-4-mobile" style="font-size: 3rem;">
-        Holistic Closed-Loop Whole-Body Teleoperation <br class="is-hidden-mobile"> for Long-Horizon Humanoid Control
-      </h1>
-
-      <h1 class="is-2 is-italic is-size-4-mobile" style="font-size: 2rem; opacity: 80%;">
-        In Submission
-      </h1>
-    </div>
-
-  </div>
-
-  <!-- Hero footer: will stick at the bottom -->
-  <div class="hero-foot is-hidden-mobile">
-    <nav class="tabs is-boxed is-fullwidth is-size-5">
-      <ul>
-        <li><a href="#whole">Whole-Body Tracking</a></li>
-        <li><a href="#interactive">Interactive Tasks</a></li>
-        <li><a href="#long">Long-Horizon Interactive Tasks</a></li>
-      </ul>
-    </nav>
-  </div>
-</section>
-
-
-
-
-<section class="section is-medium" id="overview">
-  <div class="container is-max-desktop">
-    <div class="columns is-centered">
-      <div class="column is-five-fifths has-text-justified is-hidden-mobile is-size-5">
-        <h2 class="subtitle ">
-          <b>CLONE</b> is a lightweight whole-body teleoperation system that <b>achieves
-          comprehensive robot control</b> using only head and hand poses
-          from a VR headset. It enabeles previously unattainable dexterous loco-manipulation tasks, 
-          such as picking up an object from the ground and placing it in a distant bin, facilitating
-          the <b>collection of long-horizon interaction data</b> and establishes <b>a foundation for 
-          more capable human-robot interaction</b> in both research and practical applications.
-          <!-- <b>HoliTele</b> is a lightweight whole-body teleoperation system that achieves
-          comprehensive robot control using only head and hand poses
-          from a VR headset. It adopts a <b>unified MoE framework</b> that integrates 
-          <b>systematic hand pose augmentation</b> and <b>closed-loop error correction mechanism</b>, 
-          enabeling previously unattainable dexterous loco-manipulation tasks 
-          such as picking up an object from the ground and placing it in a distant bin.  -->
-        </h2>
-        <!-- <br> -->
-        <!-- <h2 class="subtitle">
-          <b>HoliTele</b> also facilitates the collection of long-horizon interaction data 
-          and establishes a foundation for more capable human-robot interaction in 
-          both research and practical applications.
-        </h2> -->
-      </div>
-
-      <div class="column is-five-fifths is-hidden-tablet has-text-justified-mobile is-size-5">
-        <b>CLONE</b> is a lightweight whole-body teleoperation system that <b>achieves
-          comprehensive robot control</b> using only head and hand poses
-          from a VR headset. It enabeles previously unattainable dexterous loco-manipulation tasks, 
-          such as picking up an object from the ground and placing it in a distant bin, facilitating
-          the <b>collection of long-horizon interaction data</b> and establishes <b>a foundation for 
-          more capable human-robot interaction</b> in both research and practical applications.
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<section class="section" id="How?">
-  <div class="container is-max-desktop">
-    <h2 class="title is-1 has-text-centered is-size-4-mobile">How?</h2>
-    <div class="columns is-centered">
-      <div class="column has-text-justified is-five-fifths is-hidden-mobile is-size-5">
-        <!-- <p>
-          <b>Hand Pose Augmentation</b> -- augment reference motions that cover diverse scenarios.
-        </p>
-        <p>
-          <b>Closed-Loop Error Correction Mechanism</b> -- correct stepwise errors to overcome accumulated errors over time.
-        </p>
-        <p>
-          <b>Unified MoE Framework </b> -- learn a wide range of motions with different patterns under a unified policy.
-        </p> -->
-        <p>
-          <b>Hand Pose Augmentation</b> -- augment reference motions that cover diverse scenarios.
-        </p>
-        <p>
-          <b>Closed-Loop Error Correction</b> -- correct stepwise errors to overcome accumulated errors over time.
-        </p>
-        <p>
-          <b>Unified MoE Framework </b> -- learn a wide range of motions with different patterns under a unified policy.
-        </p>
-      </div>
-      <div class="column has-text-justified is-four-fifths is-hidden-tablet is-size-5">
-        <p>
-          <b>Hand Pose Augmentation</b> -- augment reference motions that cover diverse scenarios.
-        </p>
-        <p>
-          <b>Closed-Loop Error Correction</b> -- correct stepwise errors to overcome accumulated errors over time.
-        </p>
-        <p>
-          <b>Unified MoE Framework </b> -- learn a wide range of motions with different patterns under a unified policy.
-        </p>
-      </div>
-    </div>
-  </div>
-</section>
-
-
-<div style="text-align: center; color: #ff0000;">
-  <p>All videos show real-time teleoperation at 1x speed using a unified policy. </p>
-  </div>
-
-
-  <section class="section", id="whole">
-    <div class="container">
-      <div class="columns is-centered">
-        <div class="column is-full-width">
-          <h2 class="title is-1" style="text-align: center; padding-bottom: 10px;">Whole-Body Tracking</h2>
-          <tr>
-            <td>
-
-              <div class="row" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
-                <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
-                  <h3 class="title is-5" style="text-align: center; margin-bottom: 10px;">Changing Different Poses while Walking</h3>
-                  <video autoplay muted loop playsinline controls src="./resources/tracking/outdoor_1.MP4" width="100%"
-                         style="border-radius:10px; display: block;"></video>
-                         <!-- <p style="text-align: center; margin-top: 8px; font-size: 0.9em; color: #666;">
-                          Teleoperating the humanoid over a long horizon to evaluate the effectiveness of the closed-loop error correction mechanism while transitioning through different poses during walking.
-                        </p> -->
-                </div>
-
-                <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
-                  <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Hand Pose Tracking</h3>
-                  <video autoplay muted loop playsinline controls src="./resources/tracking/upperbody_tracking_1.MP4" width="100%"
-                         style="border-radius:10px; display: block;"></video>
-                         <!-- <p style="text-align: center; margin-top: 8px; font-size: 0.9em; color: #666;">
-                          Tracking the humanoid's upper body motion with hand poses.
-                        </p> -->
-                </div>
-              </div>
-  
-              <br>
-  
-              <div class="row" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
-                <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
-                  <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Turning</h3>
-                  <video autoplay muted loop playsinline controls src="./resources/tracking/turning_1.MP4" width="100%"
-                         style="border-radius:10px; display: block;"></video>
-                         <!-- <p style="text-align: center; margin-top: 8px; font-size: 0.9em; color: #666;">
-                          Teleoperating the humanoid to turn around while walking.
-                        </p> -->
-                </div>
-                
-                <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
-                  <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Side Stepping</h3>
-                  <video autoplay muted loop playsinline controls src="./resources/tracking/side_stepping_1.MP4" width="100%"
-                         style="border-radius:10px; display: block;"></video>
-                         <!-- <p style="text-align: center; margin-top: 8px; font-size: 0.9em; color: #666;">
-                          Teleoperating the humanoid to side step while walking.
-                        </p> -->
-                </div>
-              </div>
-  
-              <br>
-  
-              <div class="row" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
-                <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
-                  <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Squat and Walking</h3>
-                  <video autoplay muted loop playsinline controls src="./resources/tracking/squatwalking_1.mp4" width="100%"
-                         style="border-radius:10px; display: block;"></video>
-                         <!-- <p style="text-align: center; margin-top: 8px; font-size: 0.9em; color: #666;">
-                          Teleoperating the humanoid to squat and walk.
-                        </p> -->
-                </div>
-                
-                <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
-                  <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Robustness & Global Position Tracking</h3>
-                  <video autoplay muted loop playsinline controls src="./resources/tracking/robustness_1.mp4" width="100%"
-                         style="border-radius:10px; display: block;"></video>
-                         <!-- <p style="text-align: center; margin-top: 8px; font-size: 0.9em; color: #666;">
-                          Testing the humanoid robustness to global position tracking and dynamic disturbances.
-                        </p> -->
-                </div>
-              </div>
-
-
-              <br>
-              <div class="row" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
-                <div class="col" style="flex: 1; min-width: 300px; max-width: 600px;">
-                  <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Circle Walking</h3>
-                  <video autoplay muted loop playsinline controls src="./resources/tracking/circling_1.MP4" width="100%"
-                         style="border-radius:10px; display: block;"></video>
-                         <!-- <p style="text-align: center; margin-top: 8px; font-size: 0.9em; color: #666;">
-                          Teleoperating the humanoid to circle walk.
-                        </p> -->
-                </div>
-                
-                <!-- <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
-                  <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">PlaceHolder</h3>
-                  <video autoplay muted loop playsinline controls src="./resources/tracking/" width="100%"
-                         style="border-radius:10px; display: block;"></video>
-                </div> -->
-              </div>
-  
-            </td>
-          </tr>
-        </div> 
-      </div>
-    </div>
-  </section>
-  
-
-
-<section class="section", id="interactive">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-1" style="text-align: center; padding-bottom: 10px;">Interactive Tasks</h2>
-        <tr>
-          <td>
-
-            <div class="row" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
-              <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
-                <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Playing Table Tennis</h3>
-                <video autoplay muted loop playsinline controls src="./resources/tabletennis/succ/tabletennis1_1.mp4" width="100%"
-                       style="border-radius:10px; display: block;"></video>
-                       <p style="text-align: center; margin-top: 8px; font-size: 0.9em; color: #666;">
-                        Teleoperating the humanoid to play table tennis using forehand strokes driven by waist movement.
-                      </p>
-              </div>
-              
-              <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
-                <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Playing Table Tennis</h3>
-                <video autoplay muted loop playsinline controls src="./resources/tabletennis/succ/tabletennis2_1.mp4" width="100%"
-                       style="border-radius:10px; display: block;"></video>
-                       <p style="text-align: center; margin-top: 8px; font-size: 0.9em; color: #666;">
-                        Teleoperating the humanoid to play table tennis using backhand strokes.
-                      </p>
-              </div>
-            </div>
-
-            <br>
-
-            <div class="row" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
-              <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
-                <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Tabletop Manipulation</h3>
-                <video autoplay muted loop playsinline controls src="./resources/tabletopmanip/table_handover_2_1.mp4" width="100%"
-                       style="border-radius:10px; display: block;"></video>
-                       <!-- <p style="text-align: center; margin-top: 8px; font-size: 0.9em; color: #666;">
-                        Teleoperating the humanoid to manipulate objects on the tabletop.
-                      </p> -->
-              </div>
-              
-              <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
-                <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Tabletop Handover</h3>
-                <video autoplay muted loop playsinline controls src="./resources/tabletopmanip/table_handover_1.MP4" width="100%"
-                       style="border-radius:10px; display: block;"></video>
-                       <!-- <p style="text-align: center; margin-top: 8px; font-size: 0.9em; color: #666;">
-                        Teleoperating the humanoid to handover an object from one hand to another hand.
-                      </p> -->
-              </div>
-            </div>
-
-          </td>
-        </tr>
-      </div> 
-    </div>
-  </div>
-</section>
-
-
-<section class="section", id="long">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-full-width">
-        <h2 class="title is-2" style="text-align: center; padding-bottom: 10px;">Long-Horizon Interactive Tasks</h2>
-        <tr>
-          <td>
-
-            <div class="row" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
-              <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
-                <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Picking up a Peach From the Ground</h3>
-                <video autoplay muted loop playsinline controls src="./resources/long-horizon/pickfromground1_1.mp4" width="100%"
-                       style="border-radius:10px; display: block;"></video>
-                       <!-- <p style="text-align: center; margin-top: 8px; font-size: 0.9em; color: #666;">
-                        Teleoperating the humanoid to pick up a peach from the ground.
-                      </p> -->
-              </div>
-              
-              <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
-                <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Picking up a Box From the Ground</h3>
-                <video autoplay muted loop playsinline controls src="./resources/long-horizon/pickfromground2_1.mp4" width="100%"
-                       style="border-radius:10px; display: block;"></video>
-                       <!-- <p style="text-align: center; margin-top: 8px; font-size: 0.9em; color: #666;">
-                        Teleoperating the humanoid to pick up a box from the ground.
-                      </p> -->
-              </div>
-            </div>
-
-            <br>
-
-            <div class="row" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
-              <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
-                <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Pick and Place</h3>
-                <video autoplay muted loop playsinline controls src="./resources/long-horizon/pickandplace1_1.mp4" width="100%"
-                       style="border-radius:10px; display: block;"></video>
-                       <!-- <p style="text-align: center; margin-top: 8px; font-size: 0.9em; color: #666;"> -->
-                        <!-- Your caption text goes here -->
-                        <!-- Teleoperating the humanoid to pick and place a box. -->
-                      <!-- </p> -->
-              </div>
-              
-              <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
-                <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Pick and Place</h3>
-                <video autoplay muted loop playsinline controls src="./resources/long-horizon/pickandplace2_1.mp4" width="100%"
-                       style="border-radius:10px; display: block;"></video>
-              </div>
-            </div>
-
-            <br>
-
-            <div class="row" style="display: flex; flex-wrap: wrap; justify-content: center; gap: 20px;">
-
-              <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
-                <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Squat and Wipe the Blackboard</h3>
-                <video autoplay muted loop playsinline controls src="./resources/long-horizon/blackboard_2.mp4" width="100%"
-                       style="border-radius:10px; display: block;"></video>
-              </div>
-              
-              <div class="col" style="flex: 1; min-width: 300px; max-width: 100%;">
-                <h3 class="title is-5" style="text-align: center; margin-bottom: 10px; ">Wipe the Blackboard</h3>
-                <video autoplay muted loop playsinline controls src="./resources/long-horizon/blackboard.mp4" width="100%"
-                       style="border-radius:10px; display: block;"></video>
-              </div>
-            </div>
-
-          </td>
-        </tr>
-      </div> 
-    </div>
-  </div>
-</section>
-
-
-
-
-
-<footer class="footer">
-  <div class="container">
-    <div class="columns is-centered">
-      <div class="column is-8">
-        <div class="content">
-          <p>
-            Website template modified from <a href="https://nerfies.github.io/">NeRFies</a> and <a
-              href="https://umi-on-legs.github.io/">Umi-on-Legs</a>.
-          </p>
-          <p>
-            This website is licensed under a <a rel="license"
-              href="http://creativecommons.org/licenses/by-sa/4.0/">Creative
-              Commons Attribution-ShareAlike 4.0 International License</a>.
-          </p>
-        </div>
-      </div>
-    </div>
-  </div>
-</footer>
-
-</body>
-
-</html>
+      div.grammarly-desktop-integration:before {
+        content: attr(data-content);
+      }
+    </style><div aria-label="grammarly-integration" role="group" tabindex="-1" class="grammarly-desktop-integration" data-content="{&quot;mode&quot;:&quot;full&quot;,&quot;isActive&quot;:true,&quot;isUserDisabled&quot;:false}"></div></template></grammarly-desktop-integration></html>
