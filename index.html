@@ -3,7 +3,7 @@
 <html lang="en"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
   
   <title>CLONE</title>
-  <link rel="icon" href="https://www.videomimic.net/figs/logo.png" type="image/png">
+  <link rel="icon" href="https://yixxuan-li.github.io/CLONE/resources/logo.png" type="image/png">
   <!-- <meta name="viewport" content="width=device-width, initial-scale=1.0"> -->
   <link rel="stylesheet" href="./static/style.css">
 
@@ -13,12 +13,13 @@
     <h3>Content</h3>
     <hr>
     <ul>
-      <li><a href="https://www.videomimic.net/#abstract">Abstract</a></li>
-      <li><a href="https://www.videomimic.net/#deploy-in-real">Real-world Demo</a></li>
-      <li><a href="https://www.videomimic.net/#approach">Approach</a></li>
-      <li class="toc-subsection"><a href="https://www.videomimic.net/#real-to-sim">Real to Sim</a></li>
-      <li class="toc-subsection"><a href="https://www.videomimic.net/#training-in-sim">Training in Sim</a></li>
-      <li><a href="https://www.videomimic.net/#acknowledgements">Acknowledgements</a></li>
+      <li><a href="humanoidclone.github.io/CLONE.github.io/#abstract">Abstract</a></li>
+      <li><a href="humanoidclone.github.io/CLONE.github.io/#deploy-in-real">Real-world Demo</a></li>
+      <li><a href="humanoidclone.github.io/CLONE.github.io/#approach">Approach</a></li>
+      <li class="toc-subsection"><a href="humanoidclone.github.io/CLONE.github.io/#model">Model Architecture</a></li>
+      <li class="toc-subsection"><a href="humanoidclone.github.io/CLONE.github.io/#system">System Integration</a></li>
+      <li class="toc-subsection"><a href="humanoidclone.github.io/CLONE.github.io/#data">Data Curation</a></li>
+      <li><a href="humanoidclone.github.io/CLONE.github.io/#acknowledgements">Acknowledgements</a></li>
     </ul>
   </div>
 
@@ -27,40 +28,37 @@
     <div class="sub-hero-text">Holistic Closed-Loop Whole-Body Teleoperation for Long-Horizon Humanoid Control</div>
 
     <!-- Add Authors -->
-    <div class="authors">
-      <a href="https://allshire.org/" target="_blank">Arthur Allshire*</a>, <a href="https://hongsukchoi.github.io/" target="_blank">Hongsuk Choi*</a>, <a href="https://www.junyi42.com/" target="_blank">Junyi Zhang*</a>, <a href="https://mcallisterdavid.com/" target="_blank">David McAllister*</a>, <a href="https://antoniomacaronio.github.io/personal-website/#/home/" target="_blank">Anthony Zhang</a>, <a href="https://chungmin99.github.io/" target="_blank">Chung Min Kim</a>,<br>
-      <a href="https://people.eecs.berkeley.edu/~trevor/" target="_blank">Trevor Darrell</a>, <a href="https://people.eecs.berkeley.edu/~pabbeel/" target="_blank">Pieter Abbeel</a>, <a href="https://people.eecs.berkeley.edu/~malik/" target="_blank">Jitendra Malik</a>, <a href="https://people.eecs.berkeley.edu/~kanazawa/" target="_blank">Angjoo Kanazawa.</a>
-      &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;(*:equal contribution)
-      <span class="affiliation">University of California, Berkeley</span>
-    </div>
     <!-- End Authors -->
 
-    <!-- use the video ./figs/videomimic_teaser.mp4 -->
-    <video id="teaser-video" src="./figs/videomimic_teaser.mp4" width="100%" height="100%" controls="" muted="" playsinline="" autoplay=""></video>
+    <!-- use the video ./resources/overview_v0.1.mp4mp4 -->
+    <video id="teaser-video" src="./resources/overview_v0.1.mp4" width="100%" height="100%" controls="" muted="" playsinline="" autoplay=""></video>
     <!-- Caption for Figure 1 (Teaser Video) -->
     <p class="figure-caption">
-        <span style="font-variant: small-caps;">VideoMimic</span> is a real-to-sim-to-real pipeline that converts monocular videos into transferable humanoid skills, letting robots learn context-aware behaviors (terrain-traversing, climbing, sitting) in a single policy.
+        <span style="font-variant: small-caps;">CLONE</span> is a whole-body teleoperation system that <b>achieves
+          comprehensive robot control</b> using a VR headset. It enabeles previously unattainable comprehensive skills, 
+          such as picking up an object from the ground and placing it in a distant bin, facilitating
+          the <b>collection of long-horizon interaction data</b> and establishes <b>a foundation for 
+          more capable human-robot interaction</b> in both research and practical applications.
     </p>
 
     <!-- Add Quick Links Here -->
-    <div class="quick-links">
-      <a href="https://www.videomimic.net/VideoMimic.pdf" target="_blank">[pdf]</a>
-      <a href="https://arxiv.org/abs/2505.03729" target="_blank">[arxiv]</a>
-      <a href="https://github.com/hongsukchoi/VideoMimic">[code(soon)]</a> 
-      <!-- <a href="#gallery-section-anchor">[gallery]</a> -->
-    </div>
     
     <div class="tagline" id="abstract">Abstract.</div>
 
 
     <div class="section">
-
-        How can we teach humanoids to climb staircases and sit on chairs using the surrounding environment context? Arguably, the simplest way is to <em>just show them</em>—casually capture a human motion video and feed it to humanoids.
-        We introduce <span style="font-variant: small-caps;">VideoMimic</span>, a real-to-sim-to-real pipeline that mines everyday videos, jointly reconstructs the humans and the environment, and produces whole-body control policies for humanoid robots that perform the corresponding skills.
-       We demonstrate the results of our pipeline on real humanoid robots, showing robust, repeatable contextual control such as staircase ascents and descents, sitting and standing from chairs and benches, as well as other dynamic whole-body skills—all from a single policy, conditioned on the environment and global root commands. 
-       <span style="font-variant: small-caps;">VideoMimic</span> offers a scalable path towards teaching humanoids to operate in diverse real-world environments.
-    
-    </div> 
+      <p>Humanoid robot teleoperation plays a vital role in demonstrating and collecting data for complex interactions. Current methods suffer from two key limitations: (1) restricted controllability due to decoupled upper- and lower-body control, and (2) severe drift caused by open-loop execution. These issues prevent humanoid robots from performing coordinated whole-body motions required for long-horizon loco-manipulation tasks.</p>
+      
+      <p>We introduce CLONE, a whole-body teleoperation system that overcomes these challenges through three key contributions:</p>
+      
+      <ol>
+          <li>A Mixture-of-Experts (MoE) whole-body control policy that enables complex coordinated movements, such as "picking up an object from the ground and placing it in a distant bin";</li>
+          <li>A closed-loop error correction mechanism using LiDAR odometry, reducing translational drift to 12cm over 8.9-meter trajectories;</li>
+          <li>A systematic data augmentation strategy that ensures robust performance under diverse, previously unseen operator poses.</li>
+      </ol>
+      
+      <p>In extensive experiments, CLONE demonstrates robust performance across diverse scenarios while maintaining stable whole-body control. These capabilities significantly advance humanoid robotics by enabling the collection of long-horizon interaction data and establishing a foundation for more sophisticated humanoid-environment interaction in both research and practical applications.</p>
+  </div>
 
     <div class="tagline" id="deploy-in-real">Real-world Demo.</div>
 
@@ -69,14 +67,13 @@
       <div class="video-gallery-container">
         <div class="video-gallery" id="videoGalleryStairs">
           <!-- Videos remain here - ADD autoplay -->
-          <video class="gallery-video" src="./stairs/1.mp4" autoplay="" muted="" playsinline="" loop=""></video>
-          <video class="gallery-video" src="./stairs/2.mp4" autoplay="" muted="" playsinline="" loop=""></video>
-          <video class="gallery-video" src="./stairs/7.mp4" autoplay="" muted="" playsinline="" loop=""></video>
-          <video class="gallery-video" src="./stairs/4.mp4" autoplay="" muted="" playsinline="" loop=""></video>
-          <video class="gallery-video" src="./stairs/5.mp4" autoplay="" muted="" playsinline="" loop=""></video>
-          <video class="gallery-video" src="./stairs/6.mp4" autoplay="" muted="" playsinline="" loop=""></video>
-          <video class="gallery-video" src="./stairs/3.mp4" autoplay="" muted="" playsinline="" loop=""></video>
-          <video class="gallery-video" src="./stairs/8.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+          <video class="gallery-video" src="./resources/tracking/outdoor_1.MP4" autoplay="" muted="" playsinline="" loop=""></video>
+          <video class="gallery-video" src="./resources/tracking/upperbody_tracking_1.MP4" autoplay="" muted="" playsinline="" loop=""></video>
+          <video class="gallery-video" src="./resources/tracking/turning_1.MP4" autoplay="" muted="" playsinline="" loop=""></video>
+          <video class="gallery-video" src="./resources/tracking/side_stepping_1.MP4" autoplay="" muted="" playsinline="" loop=""></video>
+          <video class="gallery-video" src="./resources/tracking/squatwalking_1.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+          <video class="gallery-video" src="./resources/tracking/robustness_1.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+          <video class="gallery-video" src="./resources/tracking/circling_1.MP4" autoplay="" muted="" playsinline="" loop=""></video>
           <!-- Add more videos as needed, ensuring they have autoplay muted loop -->
         </div>
       </div>
@@ -89,7 +86,7 @@
           </div>
           <!-- Caption text -->
           <p class="figure-caption gallery-caption">
-              <b>Stairs climbing up/down:</b> The robot confidently ascends and descends various staircases, showcasing stable and adaptive locomotion.
+              <b>Whole-Body Tracking:</b>
           </p>
       </div>
     </div>
@@ -100,12 +97,10 @@
     <div class="video-gallery-container">
       <div class="video-gallery" id="videoGallerySitting">
         <!-- Videos remain here - ADD autoplay -->
-        <video class="gallery-video" src="./sitting/5.mp4" autoplay="" muted="" playsinline="" loop=""></video>
-        <video class="gallery-video" src="./sitting/3.mp4" autoplay="" muted="" playsinline="" loop=""></video>
-        <video class="gallery-video" src="./sitting/1.mp4" autoplay="" muted="" playsinline="" loop=""></video>
-        <video class="gallery-video" src="./sitting/2.mp4" autoplay="" muted="" playsinline="" loop=""></video>
-        <video class="gallery-video" src="./sitting/4.mp4" autoplay="" muted="" playsinline="" loop=""></video>
-        <video class="gallery-video" src="./sitting/0.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+        <video class="gallery-video" src="./resources/tabletennis/succ/tabletennis1_1.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+        <video class="gallery-video" src="./resources/tabletennis/succ/tabletennis2_1.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+        <video class="gallery-video" src="./resources/tabletopmanip/table_handover_2_1.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+        <video class="gallery-video" src="./resources/tabletopmanip/table_handover_1.MP4" autoplay="" muted="" playsinline="" loop=""></video>
         <!-- Add more videos as needed, ensuring they have autoplay muted loop -->
       </div>
     </div>
@@ -118,7 +113,7 @@
         </div>
         <!-- Caption text -->
         <p class="figure-caption gallery-caption">
-            <b>Sitting/Standing:</b> Our robot demonstrates smooth sitting and standing behaviors on different chairs and benches, adapting to object heights and shapes.
+            <b>Interactive Tasks:</b>
         </p>
     </div>
   </div>
@@ -129,13 +124,12 @@
       <div class="video-gallery-container">
         <div class="video-gallery" id="videoGalleryTraversing">
           <!-- Videos remain here - ADD autoplay -->
-          <video class="gallery-video" src="./traversing/1.mp4" autoplay="" muted="" playsinline="" loop=""></video>
-          <video class="gallery-video" src="./traversing/5.mp4" autoplay="" muted="" playsinline="" loop=""></video>
-          <video class="gallery-video" src="./traversing/7.mp4" autoplay="" muted="" playsinline="" loop=""></video>
-          <video class="gallery-video" src="./traversing/4.mp4" autoplay="" muted="" playsinline="" loop=""></video>
-          <video class="gallery-video" src="./traversing/2.mp4" autoplay="" muted="" playsinline="" loop=""></video>
-          <video class="gallery-video" src="./traversing/6.mp4" autoplay="" muted="" playsinline="" loop=""></video>
-          <video class="gallery-video" src="./traversing/3.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+          <video class="gallery-video" src="./resources/long-horizon/pickfromground1_1.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+          <video class="gallery-video" src="./resources/long-horizon/pickfromground2_1.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+          <video class="gallery-video" src="./resources/long-horizon/pickandplace1_1.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+          <video class="gallery-video" src="./resources/long-horizon/pickandplace2_1.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+          <video class="gallery-video" src="./resources/long-horizon/blackboard_2.MP4" autoplay="" muted="" playsinline="" loop=""></video>
+          <video class="gallery-video" src="./resources/long-horizon/blackboard.MP4" autoplay="" muted="" playsinline="" loop=""></video>
           <!-- Add more videos as needed, ensuring they have autoplay muted loop -->
         </div>
       </div>
@@ -148,7 +142,7 @@
           </div>
           <!-- Caption text -->
           <p class="figure-caption gallery-caption">
-              <b>Terrain traversing:</b> Watch the humanoid navigate diverse terrains, including uneven ground, slopes, and stepping over small obstacles.
+              <b>Long-Horizon Interactive Tasks:</b>
           </p>
       </div>
     </div>
@@ -156,7 +150,10 @@
     <div class="tagline" id="approach">Approach.</div>
 
     <div class="r2s-vertical-layout">
-      <div class="r2s-video-row r2s-top-row">
+      <a id="figure-1-img" href="https://www.videomimic.net/figs/2.png" download="2.png">
+        <img src="./resources/pipeline_new.png" alt="real-to-sim pipeline">
+      </a>
+      <!-- <div class="r2s-video-row r2s-top-row">
         <video class="r2s-video-item r2s-video-input" src="./single/input.mp4" autoplay="" muted="" loop="" playsinline=""></video>
         <video class="r2s-video-item r2s-video-smpl" src="./single/smpl.mp4" autoplay="" muted="" loop="" playsinline=""></video>
       </div>
@@ -176,93 +173,88 @@
         <p class="r2s-caption-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;G1 Retargeted Results</p>
         <p class="r2s-caption-item">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Egoview (RGB/Depth)</p>
         <p class="r2s-caption-item">Training in Simulation&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
-      </div>
+      </div> -->
       <p class="figure-caption">
-        <b>From a monocular video, we jointly reconstruct metric-scale 4D human trajectories and dense scene geometry. The human motion is retargeted to a humanoid, and with the scene converted to a mesh in the simulator, the motion is used as a reference to train a context-aware whole-body control policy. While our policy does not use RGB conditioning for now, we demonstrate the potential of our reconstruction for ego-view rendering.</b>
+        <b>Framework and structure of CLONE. CLONE curates and augments the retargeted AMASS dataset
+          through motion editing to introduce diverse humanoid motions and detailed hand movements. We employ an
+          MoE network as the student policy, distilling it from a teacher policy trained with privileged information. For
+          the real-world deployment, we integrate LiDAR odometry into the system to obtain real-time humanoid states,
+          enabling closed-loop error correction.</b>
       </p>
     </div>
 
-    <div class="section-subtitle" id="real-to-sim">1. Real to Sim.</div>
+    <div class="section-subtitle" id="model">1. Model Architecture.</div>
 
   <!-- Video Gallery Section - SITTING VIDEOS -->
-  <div class="video-gallery-section" id="reconstructionGallerySection">
+  <!-- <div class="video-gallery-section" id="reconstructionGallerySection">
     <div class="video-gallery-container">
-      <div class="video-gallery" id="videoGalleryReconstruction">
+      <div class="video-gallery" id="videoGalleryReconstruction"> -->
         <!-- Videos remain here - ADD autoplay -->
-        <video class="gallery-video" src="./reconstruction/6.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+        <!-- <video class="gallery-video" src="./reconstruction/6.mp4" autoplay="" muted="" playsinline="" loop=""></video>
         <video class="gallery-video" src="./reconstruction/11.mp4" autoplay="" muted="" playsinline="" loop=""></video>
         <video class="gallery-video" src="./reconstruction/13.mp4" autoplay="" muted="" playsinline="" loop=""></video>
         <video class="gallery-video" src="./reconstruction/7.mp4" autoplay="" muted="" playsinline="" loop=""></video>
-        <video class="gallery-video" src="./reconstruction/14.mp4" autoplay="" muted="" playsinline="" loop=""></video>
+        <video class="gallery-video" src="./reconstruction/14.mp4" autoplay="" muted="" playsinline="" loop=""></video> -->
         <!-- Add more videos as needed, ensuring they have autoplay muted loop -->
-      </div>
-    </div>
+      <!-- </div>
+    </div> -->
     <!-- Container for the caption AND buttons -->
-    <div class="gallery-caption-container">
+    <!-- <div class="gallery-caption-container"> -->
         <!-- Move button controls INSIDE caption container -->
-        <div class="gallery-nav-controls">
+        <!-- <div class="gallery-nav-controls">
             <button class="gallery-nav left" id="scrollLeftBtnReconstruction">&lt;</button>
             <button class="gallery-nav right" id="scrollRightBtnReconstruction">&gt;</button>
-        </div>
+        </div> -->
         <!-- Caption text -->
-        <p class="figure-caption gallery-caption" style="margin-bottom: 30px;">
+        <!-- <p class="figure-caption gallery-caption" style="margin-bottom: 30px;">
             <b>Human + World Reconstruction:</b> Our reconstruction pipeline can handle videos with multiple humans and complex environments from Internet. More results in the <a href="https://www.videomimic.net/page1.html" target="_blank">gallery</a>.
         </p>
-    </div>
-  </div>
+    </div> -->
+  <!-- </div> -->
   <!-- End Video Gallery Section -->
 
-    <a id="figure-1-img" href="https://www.videomimic.net/figs/2.png" download="2.png">
+    <!-- <a id="figure-1-img" href="https://www.videomimic.net/figs/2.png" download="2.png">
       <img src="./VideoMimic_files/2-min.png" alt="real-to-sim pipeline">
-    </a>
+    </a> -->
     <!-- Caption for Figure 2 -->
-    <p class="figure-caption">
+    <!-- <p class="figure-caption">
       <b>Figure 1:</b> The Real-to-Sim pipeline reconstructs human motion and scene geometry from video, outputting simulator-ready data.
-    </p>
+    </p> -->
 
-    <a id="figure-2-img" href="https://www.videomimic.net/figs/4.png" download="4.png">
+    <!-- <a id="figure-2-img" href="https://www.videomimic.net/figs/4.png" download="4.png">
       <img src="./VideoMimic_files/4-min.png" alt="Approach Overview">
-    </a>
+    </a> -->
     <!-- Caption for Figure 2 -->
-    <p class="figure-caption">
+    <!-- <p class="figure-caption">
       <b>Figure 2:</b> Versatile capabilities include handling internet videos, multi-human reconstruction, and ego-view rendering.
-    </p>
+    </p> -->
 
-    <div class="section-subtitle" id="training-in-sim">2. Training in Sim.</div>
+    <div class="section-subtitle" id="system">2. System Integration.</div>
 
-    <a id="figure-3-img" href="https://www.videomimic.net/figs/3.png" download="3.png">
+    <!-- <a id="figure-3-img" href="https://www.videomimic.net/figs/3.png" download="3.png">
       <img src="./VideoMimic_files/3-min.png" alt="Training in Sim">
-    </a>
+    </a> -->
     <!-- Caption for Figure 3 -->
-    <p class="figure-caption">
+    <!-- <p class="figure-caption">
       <b>Figure 3:</b> Policy training pipeline in simulation, progressing from MoCap pre-training to environment-aware tracking and distillation.
-    </p>
+    </p> -->
 
-    <div class="tagline" id="acknowledgements">Acknowledgements.</div>
-    <div class="section" style="margin-top: -5px;">
+    <div class="section-subtitle" id="data">3. Data Curation.</div>
+
+    <!-- <div class="tagline" id="acknowledgements">Acknowledgements.</div> -->
+    <!-- <div class="section" style="margin-top: -5px;">
       <p>
-        We thank Brent Yi for his guidance with the excellent 3D visualization tool we use, Viser. We
+        <!-- We thank Brent Yi for his guidance with the excellent 3D visualization tool we use, Viser. We
         are grateful to Ritvik Singh, Jason Liu, Ankur Handa, Ilija Radosavovic, Himanshu Gaurav-Singh,
         Haven Feng, and Kevin Zakka for helpful advice and discussions during the paper. We thank Lea
         Müller for helpful discussions at the start of the project. We thank Zhizheng Liu for helpful
         suggestions on evaluating human and scene reconstruction. We thank Moji Shi and Huayi Wang for
         advice on using LiDAR heightmap input. We thank Eric Xu, Matthew Liu, Hayeon
         Jeong, Hyunjoo Lee, Jihoon Choi, Tyler Bonnen, and Yao Tang for their help in capturing and
-        featuring in the video clips used in this project.
+        featuring in the video clips used in this project. -->
       </p>
-    </div>
+    </div> -->
 
-    <div class="bibtex-code" id="bibtex">
-      <div class="bibtex-title">BibTeX</div>
-      <pre><code>@article{videomimic,
-          title     = {Visual imitation enables contextual humanoid control},
-          author    = {Allshire, Arthur and Choi, Hongsuk and Zhang, Junyi and McAllister, David 
-                       and Zhang, Anthony and Kim, Chung Min and Darrell, Trevor and Abbeel, 
-                       Pieter and Malik, Jitendra and Kanazawa, Angjoo},
-          journal   = {arXiv preprint arXiv:2505.03729},
-          year      = {2025}
-        }</code></pre>
-    </div>
 
   </div> <!-- End of main-content div -->
 
